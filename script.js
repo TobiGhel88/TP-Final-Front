@@ -1,7 +1,7 @@
-fetch('https://pokeapi.co/api/v2/pokemon?limit=1500')          // Ruta al archivo JSON
+fetch('https://pokeapi.co/api/v2/pokemon?limit=151')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
-    console.log('Pokemon cargados desde JSON:');
+    console.log('Pokemon cargados desde API:');
     const pokes = data.results 
     for(let i = 0; i < pokes.length; i++){
         let pokeparticular = pokes[i]
@@ -13,13 +13,29 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=1500')          // Ruta al archiv
         })
     }
 console.log(pokemon.length)
-    mostarlasomidasconforeach(comidas)          
-    actualizarFiltros()        // Asignar el JSON a la variable comidas
+    mostrarPokemonConForEach(pokemon)          
+
   })
-  .catch(error => {                   // Manejo de errores al leer el archivo JSON
-    console.error('Error al leer el archivo JSON:', error);
+  .catch(error => {               
+    console.error('Error al Fetchear la API:', error);
   });
 
 
 
 let pokemon = []
+const container = document.getElementById('POKECONTAINER')
+
+function mostrarPokemonConForEach(pokemones){
+  container.innerHTML = ""  
+  pokemones.forEach(espécimen => {
+  
+    container.innerHTML += 
+    `<div class="Cajita">
+    <p class="numero">${espécimen.numero}</p>
+    <h1 class="nombre">${(espécimen.nombre).toUpperCase()}</h1>
+    <img src="${espécimen.imagen}" alt="La Foto">
+    </div>`
+
+  })
+
+}
