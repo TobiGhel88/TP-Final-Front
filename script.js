@@ -1,4 +1,4 @@
-fetch('https://pokeapi.co/api/v2/pokemon?limit=888')          // Ruta al archivo JSON
+fetch('https://pokeapi.co/api/v2/pokemon?limit=1500')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Pokemon cargados desde API:');
@@ -30,7 +30,8 @@ function mostrarPokemonConForEach(pokemones){
   pokemones.forEach(espécimen => {
     let nombre = espécimen.nombre
     let nombrepiola = (nombre.charAt(0).toUpperCase()) + (nombre.slice(1)).split("-")[0]
- 
+    if(espécimen.numero === 29){nombrepiola += " ♀"}
+    if(espécimen.numero === 32){nombrepiola += " ♂"}
     container.innerHTML += 
     `<div class="Cajita">
     <h1 class="nombre">${nombrepiola}</h1>
