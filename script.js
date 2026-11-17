@@ -1,4 +1,4 @@
-fetch('https://pokeapi.co/api/v2/pokemon?limit=1025')          // Ruta al archivo JSON
+fetch('https://pokeapi.co/api/v2/pokemon?limit=151')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
     console.log('Pokemon cargados desde API:');
@@ -38,6 +38,7 @@ function mostrarPokemonConForEach(pokemones){
   container.innerHTML = ""  
   pokemones.forEach(espécimen => {
     let nombre = espécimen.nombre
+    let elementos = espécimen.tipos
     let nombrepiola = nombre
     let nombredividido = nombre.split("-")
     if(nombredividido.length === 1)
@@ -45,14 +46,21 @@ function mostrarPokemonConForEach(pokemones){
     else{
       nombrepiola =nombredividido[0].charAt(0).toUpperCase() + (nombredividido[0]).slice(1).split("-")[0] + " " + nombredividido[1].charAt(0).toUpperCase() + nombredividido[1].slice(1).split("-")[0]
     }
-
+    let tipoos = ""
+    elementos.forEach(tipo =>{
+      tipoos += `<img src="./Tipos/${tipo}.png">`
+    })
+    console.log(elementos)
     if(espécimen.numero === 29){nombrepiola = "Nidoran ♀"}
     if(espécimen.numero === 32){nombrepiola = "Nidoran ♂"}
     container.innerHTML += 
     `<div class="Cajita">
     <h1 class="nombre">${nombrepiola}</h1>
     <img src="${espécimen.imagen}" alt="La Foto" class="imagen">
+    <section id="abajo">
     <p class="numero">${espécimen.numero}</p>
+    ${tipoos}
+    </section>
     </div>`
 
   })
