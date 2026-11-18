@@ -48,7 +48,7 @@ function mostrarPokemonConForEach(pokemones){
     }
     let tipoos = ""
     elementos.forEach(tipo =>{
-      tipoos += `<img src="./Tipos/${tipo}.png">`
+      tipoos += `<img src="./Tipos/${tipo}.png" width="30" height="30">`
     })
     console.log(elementos)
     if(espécimen.numero === 29){nombrepiola = "Nidoran ♀"}
@@ -71,6 +71,7 @@ const buscar = document.getElementById("Buscar")
 const filtrotipo = document.getElementById("filtrotipo")
 const filtrotipo2 = document.getElementById("filtrotipo2")
 function filtrar () {
+  const texto = buscar.value.toLowerCase()
   const pokemonfiltrados = pokemon.filter( poke => {
     if(filtrotipo.value !== "-"){
     return poke.tipos.includes(filtrotipo.value)} else {return pokemon}
@@ -79,21 +80,16 @@ function filtrar () {
     if (filtrotipo2.value !== "-"){
     return poke.tipos.includes(filtrotipo2.value)} else {return pokemon}
   })
-
-  mostrarPokemonConForEach(pokemonfiltradosdevuelta)
-}
-
-function buscamelo(){
-
-  const texto = buscar.value.toLowerCase()
-  const pokemonfiltrados = pokemon.filter(poke => {
+  const pokemonfiltradosfinal = pokemonfiltradosdevuelta.filter(poke => {
 
     return poke.nombre.toLowerCase().includes(texto) || String(poke.numero).toLowerCase().includes(texto)
   })
-mostrarPokemonConForEach(pokemonfiltrados)
 
+  mostrarPokemonConForEach(pokemonfiltradosfinal)
 }
+
+
 
 filtrotipo.addEventListener ("change", filtrar)
 filtrotipo2.addEventListener ("change", filtrar)
-buscar.addEventListener("input", buscamelo)
+buscar.addEventListener("input", filtrar)
