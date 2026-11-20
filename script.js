@@ -59,7 +59,9 @@ function mostrarPokemonConForEach(pokemones){
     <img src="${espécimen.imagen}" alt="La Foto" class="imagen">
     <section id="abajo">
     <p class="numero">${espécimen.numero}</p>
+    <div class="tipos">
     ${tipoos}
+    </div>
     </section>
     </div>`
 
