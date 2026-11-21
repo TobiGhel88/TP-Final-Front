@@ -1,28 +1,36 @@
 fetch('https://pokeapi.co/api/v2/pokemon?limit=151')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
+    let cargados = 0
     console.log('Pokemon cargados desde API:');
     const pokes = data.results 
     for(let i = 0; i < pokes.length; i++){
         let pokeparticular = pokes[i]
         let id = i+1
-        let tiposs = []
+        
         fetch(pokeparticular.url)
         .then(response => response.json())
         .then(data => {
+          let tiposs = []
           data.types.forEach(tipoo => {
             tiposs.push(tipoo.type.name)
-          })})
-        
-        pokemon.push({
+          })
+                pokemon[i] = {
             nombre : pokeparticular.name,
             numero : (i+1),
             imagen: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
             tipos : tiposs
+        }
+        cargados++
+        if(cargados === pokes.length){
+            mostrarPokemonConForEach(pokemon) }
+        
         })
+        
+
     }
 console.log(pokemon.length)
-    mostrarPokemonConForEach(pokemon)          
+         
 console.log(pokemon)
   })
   .catch(error => {               
