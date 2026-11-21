@@ -48,7 +48,7 @@ function mostrarPokemonConForEach(pokemones){
     }
     let tipoos = ""
     elementos.forEach(tipo =>{
-      tipoos += `<img src="./Tipos/${tipo}.png" width="30" height="30">`
+      tipoos += `<img src="./Tipos/${tipo}.png" width="25" height="25">`
     })
     console.log(elementos)
     if(espécimen.numero === 29){nombrepiola = "Nidoran ♀"}

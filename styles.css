@@ -75,7 +75,7 @@ select{
     justify-content: space-between;
     align-items: flex-end;
     width: 100% ;
-    background-color: aqua;
+
 }
 .numero{
     
@@ -86,4 +86,15 @@ select{
     width: 8rem;
     height: fit-content;
     padding: 1rem;
+}
+
+.tipos{
+    height: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    gap: 0.2rem;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-right: -0.5rem
 }
